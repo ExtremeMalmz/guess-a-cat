@@ -3,6 +3,9 @@ const png = ".png";
 
 var globalIsQuestionAnswered = false;
 
+//checks if points have been given
+var globalNumOfPointsGiven = 0;
+
 //list of all picture files
 const catpicArray = ["alcoholic_cat", "boots1", "boots2", "boots3", "henry1", "henry2", "max1", "max2", "peach1", "peach2"];
 //list of right answers 0- the alcoholic cat 1- boots 2- henry 3- max 4- peach
@@ -23,6 +26,7 @@ function nextQuestion(){
 }
 
 function checkTheAnswer(answer){
+    
     if(answer == correctCatName){
         //checks if the wrong answer has already been selected
         if(document.getElementById("wronganswer").style.display == "block"){
@@ -37,9 +41,9 @@ function checkTheAnswer(answer){
                 //if theres 0 points aka NULL value in the points 
                 localStorage.setItem("gamePoints", 1)
                 document.getElementById("points").innerHTML = "Points: " + localStorage.getItem("gamePoints");
-                console.log("asda");
             }
-            else{
+            else if(globalNumOfPointsGiven == 0){
+                //add points to the points counter
                 var numOfPoints = localStorage.getItem("gamePoints")
                 numOfPoints++;
 
@@ -48,6 +52,13 @@ function checkTheAnswer(answer){
                 document.getElementById("points").innerHTML = "Points: " + localStorage.getItem("gamePoints");
 
                 document.getElementById("rightanswer").style.display = "block";
+
+                //so that you cant click and get it again
+                globalNumOfPointsGiven = 1;
+            }
+            else{
+                //catch the rest
+                console.log("nothing happens!")
             }
         }
     }
