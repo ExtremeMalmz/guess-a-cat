@@ -7,20 +7,13 @@
     </head>
 
     <body>
-        <img src = "" id = "catImage">
-
-        <p id = "points">Points: 0</p>
-
-        <div id = "allthebuttons">
-            <button onclick = button1Selected() id = "0">Butt one!</button>
-            <button onclick = button2Selected() id = "1">Butt two!</button>
-            <button onclick = button3Selected() id = "2">Butt three!</button>
-            <button onclick = button4Selected() id = "3">Butt four!</button>
+        <div id = "gameMenu">
+            <h1>CAT GUESSER &nbsp; THE GAME</h1>
+            <button onclick = newGame() id = "newGameButt">NEW GAME</button>
+            <button onclick = continueGame() id = "continueGameButt">CONTINUE THE GAME</button>
         </div>
 
-        <button id = "rightanswer" onclick = nextQuestion()>YOU WERE RIGHT CLICK FOR NEXT QUESTION </button>
-        <button id = "wronganswer" onclick = nextQuestion()>no you were wrong >:( - click for next question</button>
-        
+        <p>Made by Eric Malmstrom</p>
     </body>
 
     <script src="main.js"></script>
