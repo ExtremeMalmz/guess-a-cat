@@ -118,8 +118,19 @@ function initializeWebsite(){
     document.getElementById("rightanswer").style.display = "none";
     document.getElementById("wronganswer").style.display = "none";
 
+
+    console.log("bbbbbasda");
+
     //points set to their value
-    document.getElementById("points").innerHTML = "Points: " + localStorage.getItem("gamePoints");
+    if(localStorage.getItem("gamePoints") == null){
+        document.getElementById("points").innerHTML = "Points: " + 0;
+        console.log("asda");
+    }
+    else{
+        console.log("aaaa");
+        document.getElementById("points").innerHTML = "Points: " + localStorage.getItem("gamePoints");
+    }
+    
 }
 
 //----------------------------------------------------\\
