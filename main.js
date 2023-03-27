@@ -24,12 +24,41 @@ function nextQuestion(){
 
 function checkTheAnswer(answer){
     if(answer == correctCatName){
-        console.log("YOU WERE RIGHT!");
-        document.getElementById("rightanswer").style.display = "block";
+        //checks if the wrong answer has already been selected
+        if(document.getElementById("wronganswer").style.display == "block"){
+            //does nothing if the wrong answer was already selected
+        }
+        else{
+            console.log("YOU WERE RIGHT!");
+
+            //add a point to the point counter
+            //console.log(localStorage.getItem("points"));
+            if(localStorage.getItem("gamePoints") == null){
+                //if theres 0 points aka NULL value in the points 
+                localStorage.setItem("gamePoints", 1)
+                document.getElementById("points").innerHTML = "Points: " + localStorage.getItem("gamePoints");
+                console.log("asda");
+            }
+            else{
+                var numOfPoints = localStorage.getItem("gamePoints")
+                numOfPoints++;
+
+                localStorage.setItem("gamePoints", numOfPoints);
+
+                document.getElementById("points").innerHTML = "Points: " + localStorage.getItem("gamePoints");
+
+                document.getElementById("rightanswer").style.display = "block";
+            }
+        }
     }
     else{
-        console.log("YOUR WRONG!");
-        document.getElementById("wronganswer").style.display = "block"; 
+        if(document.getElementById("rightanswer").style.display == "block"){
+            //does nothing if the right answer was already selected
+        }
+        else{
+            console.log("YOUR WRONG!");
+            document.getElementById("wronganswer").style.display = "block"; 
+        }
     }
 
     if(globalIsQuestionAnswered == true){
@@ -74,8 +103,12 @@ function button4Selected(){
 }
 
 function initializeWebsite(){
+    //initialises website
     document.getElementById("rightanswer").style.display = "none";
     document.getElementById("wronganswer").style.display = "none";
+
+    //points set to their value
+    document.getElementById("points").innerHTML = "Points: " + localStorage.getItem("gamePoints");
 }
 
 //----------------------------------------------------\\
