@@ -1,3 +1,5 @@
+//TODO duplicate pics-put them in array? 
+
 const catpicsSlash = "catpics/";
 const png = ".png";
 
@@ -66,7 +68,6 @@ function nextQuestion(){
 }
 
 function checkTheAnswer(answer){
-    
     if(answer == correctCatName){
         //checks if the wrong answer has already been selected
         if(document.getElementById("wronganswer").style.display == "block"){
@@ -135,7 +136,6 @@ function checkTheAnswer(answer){
     else{
         globalIsQuestionAnswered = true;
     }
-
 }
 
 function button1Selected(){
@@ -226,23 +226,41 @@ function fillTheButtons(correctCatName){
 }
 
 //starts the game
-
 initializeWebsite();
 
-//random catpic array index
-var randomCatID = Math.floor(Math.random() * catpicArray.length);
-//console.log(randomCatID)
+var isCatPicSameAsPrevious = true;
 
-//this is the correct answer 0-4
-var rightAnswersID = rightAnswers[randomCatID];
-//console.log("RIGHTANSWER")
-//console.log(rightAnswersID)
+//making sure the same picture isnt shown twice
+while(isCatPicSameAsPrevious){
+    //random catpic array index
+    var randomCatID = Math.floor(Math.random() * catpicArray.length);
+    //console.log(randomCatID)
 
-//set the catpic ID to the image
-document.getElementById("catImage").src = catpicsSlash + catpicArray[randomCatID] + png;
+    //this is the correct answer 0-4
+    var rightAnswersID = rightAnswers[randomCatID];
+    //console.log("RIGHTANSWER")
+    //console.log(rightAnswersID)
 
-//the correct cat name
-var correctCatName = catNameArray[rightAnswersID];
-//console.log(correctCatName);
+    //the correct cat name
+    var correctCatName = catNameArray[rightAnswersID];
+    //console.log(correctCatName);
+
+    //set the catpic ID to the image
+    document.getElementById("catImage").src = catpicsSlash + catpicArray[randomCatID] + png;
+
+    //making sure no duplicates
+    if(localStorage.getItem("prevCatImage") == catpicArray[randomCatID]){
+        //console.log("DUPLICATE DETECTED RUN AGAIN");
+    }
+    else{
+        //console.log("nope no duplicate");
+        //console.log(localStorage.getItem("prevCatImage"));
+
+        isCatPicSameAsPrevious = false;
+
+        //set it to the non duplicated cat image name
+        localStorage.setItem("prevCatImage", catpicArray[randomCatID]);
+    }
+}
 
 fillTheButtons(correctCatName);
