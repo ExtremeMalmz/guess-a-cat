@@ -4,5 +4,11 @@ function newGame(){
 }
 
 function continueGame(){
-    location.href = "game/index.html";
+    //if more than 10 points you get the endless mode
+    if(localStorage.getItem("gamePoints") >= 10){
+        location.href = "game/endless_mode/index.html";
+    }
+    else{
+        location.href = "game/index.html";
+    }
 }

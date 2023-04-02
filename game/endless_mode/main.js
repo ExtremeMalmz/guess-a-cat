@@ -19,14 +19,14 @@ function winOrLoseGame(winOrLose){
         console.log("you win!");
 
         localStorage.setItem("winOrLose","win");
-        location.href = "win_or_lose/index.html";
+        //location.href = "win_or_lose/index.html";
     }
     else if(winOrLose == "lose"){
         //losing message
         console.log("loser!");
 
         localStorage.setItem("winOrLose","lose");
-        location.href = "win_or_lose/index.html";
+        //location.href = "win_or_lose/index.html";
     }
 }
 
@@ -60,9 +60,8 @@ function nextQuestion(){
     //this stuff happens when the next question button is clicked
     var isGameOver = checkIfGameIsOver();
     
-    if(!isGameOver){
-        location.reload();
-    }
+    //since its endless it will always reload
+    location.reload();
 }
 
 function checkTheAnswer(answer){
@@ -239,10 +238,12 @@ var rightAnswersID = rightAnswers[randomCatID];
 //console.log(rightAnswersID)
 
 //set the catpic ID to the image
-document.getElementById("catImage").src = catpicsSlash + catpicArray[randomCatID] + png;
+document.getElementById("catImage").src = "../" + catpicsSlash + catpicArray[randomCatID] + png;
 
 //the correct cat name
 var correctCatName = catNameArray[rightAnswersID];
 //console.log(correctCatName);
 
 fillTheButtons(correctCatName);
+
+alert("WELCOME TO ENDLESS MODE\nThere is no escape from here!")

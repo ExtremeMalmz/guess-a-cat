@@ -1,0 +1,28 @@
+body{
+    width:99%;
+    background-color: black;
+
+    background-size: 100%;
+    background-repeat:no-repeat;
+
+    text-align: center;
+}
+
+#goBackToHome{
+    position: absolute;
+    top: 46%;
+    left:42%;
+
+    padding:20px;
+}
+
+@media only screen and (max-width: 1000px) {
+    #goBackToHome{  
+        position: absolute;
+        top: 46%;
+        left:21%;
+    
+        padding:50px;
+        font-size:40px;
+    }
+}
